@@ -8,10 +8,7 @@ interface PokemonProps {
   type: string;
 }
 
-const Pokemon: React.FC<PokemonProps> = ({ pokemon, type }): JSX.Element => {
-  if (type === 'full') {
-  }
-
+const Pokemon: React.FC<PokemonProps> = ({ pokemon, type }): any => {
   if (type === 'simple') {
     return (
       <Card key={nanoid()} style={{ width: '18rem' }}>
