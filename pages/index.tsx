@@ -12,13 +12,40 @@ const Home: NextPage = () => {
   const [targetSearchedPokemon, setTargetSearchedPokemon] = useState('');
   const { data, loading, error } = useFetch(`pokemon?limit=151` /*endpoint*/);
   const { results } = data || [];
+  const [noMatches, setNoMatches] = useState<boolean>(false);
 
-  console.log('Results? :>', results);
+  useEffect(() => {
+    results?.length &&
+      window.localStorage.setItem('pokemons', JSON.stringify(results));
+  }, []);
 
-  const findPokemon = (pokemon: string): void => {
-    const [targetPokemon] = results.filter((p) => p.name === pokemon);
-    const { url } = targetPokemon || {};
-    setTargetSearchedPokemon(url ? url : '');
+  function checkExistingPokemon(pokemon: string, listOfPokemons: Array<any>) {
+    return listOfPokemons.some((p) => p.name === pokemon);
+  }
+
+  const findPokemon = (pokemon: string, results: Array<any> = []): void => {
+    setNoMatches(false);
+    const listOfPokemons: Array<any> = JSON.parse(
+      window.localStorage.getItem('pokemons')
+    );
+    if (checkExistingPokemon(pokemon, listOfPokemons)) {
+      const [targetPokemon] = listOfPokemons.filter((p) => p.name === pokemon);
+      const { url } = targetPokemon || {};
+      setTargetSearchedPokemon(url ? url : '');
+    } else if (pokemon === '') {
+      setTargetSearchedPokemon('');
+    } else if (
+      pokemon.length > 1 &&
+      !checkExistingPokemon(pokemon, listOfPokemons)
+    ) {
+      const closePokemon = listOfPokemons.find((p) => p.name.includes(pokemon));
+      if (closePokemon) {
+        setTargetSearchedPokemon(closePokemon.url ? closePokemon.url : '');
+      } else {
+        console.log('NO MATCHES!');
+        setNoMatches(true);
+      }
+    }
   };
 
   if (loading) return <h1>Loading</h1>;
@@ -43,6 +70,7 @@ const Home: NextPage = () => {
         <PokemonsContainer
           targetSearchedPokemon={targetSearchedPokemon}
           results={results}
+          noMatches={noMatches}
         />
       </main>
     </div>
