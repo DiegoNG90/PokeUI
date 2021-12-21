@@ -10,7 +10,6 @@ interface PokemonProps {
 
 const Pokemon: React.FC<PokemonProps> = ({ pokemon, type }): JSX.Element => {
   if (type === 'full') {
-    console.log(`pokemon from Pokemon :>`, pokemon);
   }
 
   if (type === 'simple') {

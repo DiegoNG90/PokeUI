@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import styles from '../../styles/SearchBar.module.css';
 
 interface SearchBarProps {
-  findPokemon: (search: string) => void;
+  findPokemon: (pokemon: string, results: Array<any>) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ findPokemon }): JSX.Element => {
@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ findPokemon }): JSX.Element => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    findPokemon(search ? search.toLowerCase() : '');
+    findPokemon(search ? search.toLowerCase() : '', []);
   };
 
   return (
