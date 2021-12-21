@@ -3,6 +3,9 @@
 
 - This project was originally thought to be done with CRA (Create-react-app) but due to software problems (new release, Ubuntu incompatibilities) it was finally done with NextJS, which is a ReactJS Framework.
 
+![image](https://user-images.githubusercontent.com/63425447/146867999-a17c2d5f-4cd0-42a3-9fba-959d63281802.png)
+
+
 Let's cut to the chase
 
 ### Steps to configure the project
