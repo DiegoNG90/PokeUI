@@ -2,8 +2,8 @@
   background-color: #fdf6dc;
   max-height: 60px;
   display: flex;
-  justify-content: start;
-  align-items: end;
+  justify-content: flex-start;
+  align-items: flex-end;
   border-bottom: 2.5px solid #cacaca;
 }
 
