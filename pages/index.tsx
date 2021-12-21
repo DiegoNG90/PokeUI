@@ -23,11 +23,13 @@ const Home: NextPage = () => {
     return listOfPokemons.some((p) => p.name === pokemon);
   }
 
+  function getPokemonStorage(): any {
+    return window.localStorage.getItem('pokemons');
+  }
+
   const findPokemon = (pokemon: string, results: Array<any> = []): void => {
     setNoMatches(false);
-    const listOfPokemons: Array<any> = JSON.parse(
-      window.localStorage.getItem('pokemons')
-    );
+    const listOfPokemons: Array<any> = JSON.parse(getPokemonStorage());
     if (checkExistingPokemon(pokemon, listOfPokemons)) {
       const [targetPokemon] = listOfPokemons.filter((p) => p.name === pokemon);
       const { url } = targetPokemon || {};
