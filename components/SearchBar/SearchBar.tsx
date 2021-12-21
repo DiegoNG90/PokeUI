@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ findPokemon }): JSX.Element => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    findPokemon(search);
+    findPokemon(search ? search.toLowerCase() : '');
   };
 
   return (
@@ -24,6 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ findPokemon }): JSX.Element => {
           className={styles.searchbar_input}
           type="text"
           placeholder="Ingrese el nombre a buscar"
+          onChange={(e) => setSearch(e.target.value)}
         />
         <Button
           className={styles.searchbar_button}
