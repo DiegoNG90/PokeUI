@@ -1,5 +1,23 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## But before NetJS configuration settings:
+Hi, and welcome to Poke-UI, the newest Pokedex experience!
+
+- This project was originally thought to be done with CRA (Create-react-app) but due to software problems (new release, Ubuntu incompatibilities) I was finally done with NextJS, which is a ReactJS Framework.
+
+### Steps to configure the project
+It's quite easy
+1- Clone or dowload this Repo
+2- At Repo folder, open a CLI and run "npm i" or "npm install", which will trigger the installation of all the packages needed to run this tiny microfrontend.
+3- After installation is done, in the same CLI run "npm run dev", which is a script already added and configured by NextJS on the package.json.
+4- That's it!
+
+Start finding/searching your favorite Pokemons!
+
+p.D: Advice: *Check your spelling! If pokemon doesn't exist, PokeUI cant find it :P...or can it?*
+
+----------------------------------------------------------------
+*(NextJS boilerplate readme)*
 ## Getting Started
 
 First, run the development server:
