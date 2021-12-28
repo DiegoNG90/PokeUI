@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useFetch } from '../hooks/useFetch';
+// import { useFetch } from '../hooks/useFetch';
+import { useData } from '../hooks/useData';
 import type { NextPage } from 'next';
 import styles from '../styles/Home.module.css';
 
@@ -8,28 +9,18 @@ import SearchBar from '../components/SearchBar';
 import PokemonsContainer from '../components/PokemonsContainer';
 
 const Home: NextPage = () => {
-  // const [endpoint, setEndpoint] = useState<string>('pokemon');
   const [targetSearchedPokemon, setTargetSearchedPokemon] = useState('');
-  const { data, loading, error } = useFetch(`pokemon?limit=151` /*endpoint*/);
+  const { data, loading, error } = useData();
   const { results } = data || [];
   const [noMatches, setNoMatches] = useState<boolean>(false);
-
-  useEffect(() => {
-    results?.length &&
-      window.localStorage.setItem('pokemons', JSON.stringify(results));
-  }, []);
 
   function checkExistingPokemon(pokemon: string, listOfPokemons: Array<any>) {
     return listOfPokemons.some((p) => p.name === pokemon);
   }
 
-  function getPokemonStorage(): any {
-    return window.localStorage.getItem('pokemons');
-  }
-
   const findPokemon = (pokemon: string, results: Array<any> = []): void => {
     setNoMatches(false);
-    const listOfPokemons: Array<any> = JSON.parse(getPokemonStorage());
+    const listOfPokemons: Array<any> = data?.results || [];
     if (checkExistingPokemon(pokemon, listOfPokemons)) {
       const [targetPokemon] = listOfPokemons.filter((p) => p.name === pokemon);
       const { url } = targetPokemon || {};
